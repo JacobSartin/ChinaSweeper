@@ -57,12 +57,12 @@
                              VerticalOptions="CenterAndExpand" 
                              HorizontalOptions="Center">
 
-                    <Label  BindingContext="{x:Reference board}"
-                            Text="{Binding FlaggedTileCount, StringFormat='Flagged {0} '}"
+                    <Label  x:Name="flaggedTiles"
+                            Text="Flagged 0 "
                             TextColor="#FFDF280F" />
 
-                    <Label BindingContext="{x:Reference board}"
-                           Text="{Binding MineCount, StringFormat=' out of {0} mines.'}" 
+                    <Label x:Name="mineNumber"
+                           Text="out of 10 mines." 
                            TextColor="{Binding PrimaryTextColor}" />
 
                 </StackLayout>
