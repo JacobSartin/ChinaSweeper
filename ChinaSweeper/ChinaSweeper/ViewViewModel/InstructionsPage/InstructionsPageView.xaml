@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ChinaSweeper.InstructionsPage.InstructionsPageView"
+             BackgroundColor="{Binding Background}"
+             Title="{Binding Title}">
+    
+    <ContentPage.Content>
+
+            <StackLayout x:Name="textStack" 
+                         Grid.Row="0" 
+                         Grid.Column="1" 
+                         Spacing="0">
+
+                <StackLayout HorizontalOptions="Center" 
+                             Spacing="0">
+
+                    <Label Text="ChinaSweeper:" 
+                           Font="Bold, Large" 
+                           TextColor="{Binding PrimaryTextColor}"/>
+
+                <BoxView Color="{Binding SecondaryColor}" 
+                             HeightRequest="3" />
+
+                </StackLayout>
+
+                <Label Text="Tap to flag/unflag a potential mine." 
+                       VerticalOptions="CenterAndExpand" 
+                       HorizontalTextAlignment="Center" 
+                       TextColor="{Binding PrimaryTextColor}"/>
+
+                <Label Text="Double-tap if you're sure it's not a mine.&#xA;The first double-tap is always safe!" 
+                       VerticalOptions="CenterAndExpand" 
+                       HorizontalTextAlignment="Center" 
+                       TextColor="{Binding PrimaryTextColor}" />
+
+                <Grid   VerticalOptions="EndAndExpand"
+                    Margin="10">
+
+                <Label Text="10 Mines"
+                       TextColor="{Binding PrimaryTextColor}"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center"
+                       Grid.Column="0"
+                       Grid.Row="0"/>
+
+                <Button Text="Start Game"
+                        TextColor="{Binding SecondaryTextColor}"
+                        BackgroundColor="{Binding PrimaryColor}"
+                        BorderColor="{Binding SecondaryColor}"
+                        Grid.Column="0"
+                        Grid.Row="1"
+                        Command="{Binding OnEasyClicked}"/>
+
+            </Grid>    
+            
+        </StackLayout>
+        
+    </ContentPage.Content>
+    
+</ContentPage>

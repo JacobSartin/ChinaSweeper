@@ -1,0 +1,148 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:ChinaSweeper;assembly=ChinaSweeper" xmlns:minesweeperpage="clr-namespace:ChinaSweeper.MineSweeperPage" x:DataType="minesweeperpage:MineSweeperPageViewModel"
+             x:Class="ChinaSweeper.MineSweeperPage.MineSweeperPageView"
+             BackgroundColor="{Binding Background}"
+             Title="{Binding Title}">
+
+    <ContentPage.Padding>
+
+        <OnPlatform x:TypeArguments="Thickness">
+            <On Platform="iOS" Value="0, 20, 0, 0" />
+            <On Platform="Android" Value="0, 0, 0, 0" />
+        </OnPlatform>
+
+    </ContentPage.Padding>
+
+    <ContentView SizeChanged="OnMainContentViewSizeChanged">
+
+        <Grid x:Name="mainGrid" 
+              ColumnSpacing="0" 
+              RowSpacing="0">
+
+            <Grid.RowDefinitions>
+
+                <RowDefinition Height="7*" />
+                <RowDefinition Height="4*" />
+
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+
+                <ColumnDefinition Width="0" />
+                <ColumnDefinition Width="*" />
+
+            </Grid.ColumnDefinitions>
+
+            <StackLayout x:Name="textStack" 
+                         Grid.Row="0" 
+                         Grid.Column="1" 
+                         Spacing="0">
+
+                <StackLayout HorizontalOptions="Center" 
+                             Spacing="0">
+
+                    <Label Text="China" 
+                           Font="Bold, Large" 
+                           TextColor="{Binding PrimaryTextColor}"/>
+
+                    <BoxView Color="{Binding SecondaryColor}" 
+                             HeightRequest="3" />
+
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal" 
+                             Spacing="0" 
+                             VerticalOptions="CenterAndExpand" 
+                             HorizontalOptions="Center">
+
+                    <Label  BindingContext="{x:Reference board}"
+                            Text="{Binding FlaggedTileCount, StringFormat='Flagged {0} '}"
+                            TextColor="#FFDF280F" />
+
+                    <Label BindingContext="{x:Reference board}"
+                           Text="{Binding MineCount, StringFormat=' out of {0} mines.'}" 
+                           TextColor="{Binding PrimaryTextColor}" />
+
+                </StackLayout>
+                <!-- Make this a binding??? -->
+                <Label x:Name="timeLabel" 
+                       Text="0:00" 
+                       VerticalOptions="CenterAndExpand" 
+                       HorizontalTextAlignment="Center" 
+                       TextColor="{Binding PrimaryTextColor}"/>
+
+            </StackLayout>
+
+            <ContentView Grid.Row="1" Grid.Column="1" SizeChanged="OnBoardContentViewSizeChanged">
+                <!-- Single-cell Grid for Board and overlays. -->
+                <Grid>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <local:Board x:Name="board" />
+
+                    <StackLayout x:Name="congratulationsText" 
+                                 Orientation="Horizontal" 
+                                 HorizontalOptions="Center" 
+                                 VerticalOptions="Center" 
+                                 Spacing="0">
+
+                        <Label Text="C" TextColor="Black" />
+                        <Label Text="H" TextColor="Black" />
+                        <Label Text="I" TextColor="Black" />
+                        <Label Text="N" TextColor="Black" />
+                        <Label Text="A" TextColor="Black" />
+                        <Label Text=" " TextColor="Black" />
+                        <Label Text="W" TextColor="Black" />
+                        <Label Text="I" TextColor="Black" />
+                        <Label Text="N" TextColor="Black" />
+                        <Label Text="S" TextColor="Black" />
+                        <Label Text="!" TextColor="Black" />
+
+                    </StackLayout>
+
+                    <StackLayout x:Name="consolationText" 
+                                 Orientation="Horizontal" 
+                                 Spacing="0" 
+                                 HorizontalOptions="Center" 
+                                 VerticalOptions="Center">
+
+                        <Label Text="Y" TextColor="Black" />
+                        <Label Text="O" TextColor="Black" />
+                        <Label Text="U" TextColor="Black" />
+                        <Label Text=" " TextColor="Black" />
+                        <Label Text="L" TextColor="Black" />
+                        <Label Text="O" TextColor="Black" />
+                        <Label Text="S" TextColor="Black" />
+                        <Label Text="E" TextColor="Black" />
+                        <Label Text="!" TextColor="Black" />
+
+                    </StackLayout>
+
+                    <Button x:Name="playAgainButton" 
+                            Text=" Play Again? " 
+                            HorizontalOptions="Center" 
+                            VerticalOptions="Center" 
+                            Clicked="OnplayAgainButtonClicked"
+                            BorderColor="#FFFFDF00" 
+                            BorderWidth="2" 
+                            BackgroundColor="#FFDF280F" 
+                            TextColor="#FFFFDF00" />
+
+                </Grid>
+
+            </ContentView>
+
+        </Grid>
+
+    </ContentView>
+
+</ContentPage>
