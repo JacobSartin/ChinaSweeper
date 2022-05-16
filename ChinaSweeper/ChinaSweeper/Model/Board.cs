@@ -95,6 +95,9 @@ namespace ChinaSweeper
             Random random = new Random();
             int mineCount = 0;
 
+            if (random.Next(0, 2) == 1)
+                MINES = 11;
+            
             while (mineCount < MINES)
             {
                 // Get random row and column.
